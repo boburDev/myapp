@@ -1,18 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Text, View, SafeAreaView, Image, TextInput, TouchableOpacity, Alert } from 'react-native'
 import * as ImagePicker from 'expo-image-picker'
-
+import logo from ''
 function App() {
 
+	const [image,setImage] = useState()
 	let openImagePickerAsync = async () => {
 		let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync()
 		
-		if (permissionResult.granted === false) {
-		  alert("Permission to access camera roll is required!")
-		  return
+		if (permissionResult.granted) {
+			let pickerResult = await ImagePicker.launchImageLibraryAsync()
+			setImage(pickerResult)
+			console.log(pickerResult)
+			console.log(logo)
 		}
-		let pickerResult = await ImagePicker.launchImageLibraryAsync()
-		console.log(pickerResult)
 	  }
 
   return (
@@ -39,19 +40,26 @@ function App() {
 
       <View style={styles.upload}>
 		  <View style={styles.uploadImg}>
-        <Image source={{
-			uri: 'https://picsum.photos/200'
-		}}
-		style={{
-			width:200,
-			height:200
-		}}
-		/>
+        {
+			image ? <Image source={{
+				uri: image.uri
+			}}
+			style={{
+				width:200,
+				height:200
+			}}
+			/> : <Image source={{
+				uri: 'https://picsum.photos/200'
+			}}
+			style={{
+				width:200,
+				height:200
+			}}
+			/>
+		}
 	</View>
 		<TouchableOpacity
-			onPress={()=>{
-				console.log('Edited')
-			}}
+			onPress={openImagePickerAsync}
 			style={styles.authButton}>
 			<Text style={{
 				fontSize: 20
