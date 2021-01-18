@@ -1,21 +1,66 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { Text, View, SafeAreaView, Image, TextInput, TouchableOpacity } from 'react-native'
 
-export default function App() {
+function App() {
+
+
   return (
-    <View style={styles.container}>
-      <Text></Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <SafeAreaView style={styles.container}>
+      <View style={styles.auth}>
+	  <TextInput
+	  placeholder="Username"
+      style={styles.authInput} />
+	  <TextInput
+	  placeholder="Password"
+      style={styles.authInput} />
+	  <TouchableOpacity style={styles.authButton}>
+		  <Text style={{
+			  fontSize: 20
+		  }}>
+			  Submit
+		  </Text>
+	  </TouchableOpacity>
+      </View>
+      <View style={styles.upload}>
+        <Image source={{
+			uri: 'https://picsum.photos/200'
+		}}
+		style={{
+			width:200,
+			height:200
+		}}
+		/>
+      </View>
+    </SafeAreaView>
+  )
 }
 
-const styles = StyleSheet.create({
+const styles = ({
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+  authInput: {
+	width:150,
+	height: 30,
+	padding:4,
+	borderColor: 'gray',
+	borderWidth: 1,
+	marginTop: 10,
+  },
+  auth: {
+	  flex: 1,
+  },
+  authButton: {
+	flex: 1,
+	alignItems: 'center',
+	marginTop:10
+  },
+  upload: {
+	  flex: 3,
+  }
+})
+
+export default App

@@ -8,7 +8,7 @@
     "splash": {
       "image": "./assets/UPLOAD.UZ.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#6930c3"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
