@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Text, View, SafeAreaView, Image, TextInput, TouchableOpacity, Alert } from 'react-native'
 import * as ImagePicker from 'expo-image-picker'
-import logo from ''
 function App() {
-
+	const defaultImgPath = 'file:///Users/boburmirzo/Library/Developer/CoreSimulator/Devices/7423F334-DD07-4030-916B-74E4453E6734/data/Containers/Data/Application/16374B62-C808-43A5-AECB-D589CD10CD26/Library/Caches/ExponentExperienceData/%2540anonymous%252Fmyapp-826cd0d7-cb33-48d1-9830-bf6725406bb2/ImagePicker/F8B47EC9-D9A3-4CF2-9E75-3DD74593EDBD.jpg'
+	
 	const [image,setImage] = useState()
 	let openImagePickerAsync = async () => {
 		let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync()
@@ -11,8 +11,6 @@ function App() {
 		if (permissionResult.granted) {
 			let pickerResult = await ImagePicker.launchImageLibraryAsync()
 			setImage(pickerResult)
-			console.log(pickerResult)
-			console.log(logo)
 		}
 	  }
 
@@ -49,7 +47,7 @@ function App() {
 				height:200
 			}}
 			/> : <Image source={{
-				uri: 'https://picsum.photos/200'
+				uri: defaultImgPath
 			}}
 			style={{
 				width:200,
